@@ -112,6 +112,52 @@ namespace X_0_Game__WinForm_
             winmsg.Location = new Point(size - 20, 2 * size);
             this.Controls.Add(winmsg);
             #endregion
+
+            //Choose of a symbol (X or 0) in the cell on the playing field
+            #region
+            foreach (Button btn in buttonList)
+            {
+                btn.Click += (e, sender) =>
+                {
+                    btn.Font = new Font("Times New Roman", 35, FontStyle.Bold);
+                    if (Fplayer)
+                    {
+                        switch (btn.Text.ToString())
+                        {
+                            case "1":
+                                btn.Text = "X";
+                                btn.ForeColor = Color.Black;
+                                break;
+                            case "X":
+                                if (btn.BackColor == Color.Aquamarine)
+                                {
+                                    btn.Text = "1";
+                                    btn.ForeColor = Color.Aquamarine;
+                                }
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (btn.Text.ToString())
+                        {
+                            case "1":
+                                btn.Text = "0";
+                                btn.ForeColor = Color.Black;
+                                break;
+                            case "0":
+                                if (btn.BackColor == Color.Aquamarine)
+                                {
+                                    btn.Text = "1";
+                                    btn.ForeColor = Color.Aquamarine;
+                                }
+                                break;
+                        }
+                    }
+                };
+            }
+            #endregion
+
         }
 
         List<Button> buttonList = new List<Button>();
