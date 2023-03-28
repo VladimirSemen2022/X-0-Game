@@ -73,10 +73,52 @@ namespace X_0_Game__WinForm_
                     exit = false;
             } while (exit);
             #endregion
+
+            //Creation the next-button
+            #region
+            btnNext = new Button();
+            btnNext.BackColor = Color.Yellow;
+            btnNext.Size = new Size(300, 50);
+            btnNext.Font = new Font("Times New Roman", 20, FontStyle.Bold);
+            btnNext.Text = "Step the first player";
+            btnNext.Location = new Point(size + 5, size - 80);
+            this.Controls.Add(btnNext);
+            #endregion
+
+            //Creation the errors-message
+            #region
+            errmsg = new Button();
+            errmsg.ForeColor = Color.Red;
+            errmsg.Visible = false;
+            errmsg.FlatAppearance.BorderSize = 0;
+            errmsg.FlatStyle = FlatStyle.Flat;
+            errmsg.Size = new Size(350, 50);
+            errmsg.Font = new Font("Times New Roman", 14, FontStyle.Bold);
+            errmsg.Text = "Message";
+            errmsg.Location = new Point(size - 20, 4 * size + 25);
+            this.Controls.Add(errmsg);
+            #endregion
+
+            //Creation the win-end-message
+            #region
+            winmsg = new Button();
+            winmsg.ForeColor = Color.Red;
+            winmsg.Visible = false;
+            winmsg.FlatAppearance.BorderSize = 0;
+            winmsg.FlatStyle = FlatStyle.Flat;
+            winmsg.Size = new Size(350, 100);
+            winmsg.Font = new Font("Times New Roman", 25, FontStyle.Bold);
+            winmsg.Text = "Message";
+            winmsg.Location = new Point(size - 20, 2 * size);
+            this.Controls.Add(winmsg);
+            #endregion
         }
 
         List<Button> buttonList = new List<Button>();
         Button btn; //Buttons of the cells
+        Button btnNext;  //Button for the next step
+        Button errmsg;   //Button for error messages
+        Button winmsg;   //Button for win-end messages
 
         #endregion
     }
