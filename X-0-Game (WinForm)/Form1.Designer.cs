@@ -47,7 +47,36 @@ namespace X_0_Game__WinForm_
             bool win = false;
             #endregion
 
+            //Creation of the buttons field
+            #region
+            int size = 100;     //Size of the playfield button
+            int line = 1;
+            int position = 1;
+            bool exit = true;
+            do
+            {
+                btn = new Button();
+                btn.Text = "1";
+                btn.ForeColor = Color.Aquamarine;
+                btn.BackColor = Color.Aquamarine;
+                btn.Size = new Size(size, size);
+                btn.Location = new Point(line * size + 5, position * size + 5);
+                buttonList.Add(btn);
+                this.Controls.Add(btn);
+                position++;
+                if (position > 3)
+                {
+                    position = 1;
+                    line++;
+                }
+                if (line > 3)
+                    exit = false;
+            } while (exit);
+            #endregion
         }
+
+        List<Button> buttonList = new List<Button>();
+        Button btn; //Buttons of the cells
 
         #endregion
     }
