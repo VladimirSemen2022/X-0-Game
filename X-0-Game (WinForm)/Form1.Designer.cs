@@ -158,6 +158,119 @@ namespace X_0_Game__WinForm_
             }
             #endregion
 
+            //Checking the playing field for the game combinations
+            #region
+            btnNext.Click += (e, sender) =>
+            {
+                if (!win)
+                {
+                    int countFullCells = 0;
+                    foreach (Button btn in buttonList)
+                    {
+                        if (btn.Text == "X" || btn.Text == "0")
+                            countFullCells++;
+                    }
+
+
+                    if (countFullCells == step)
+                    {
+                        errmsg.Visible = false;
+                        if (Fplayer)
+                            symbolCheck = "X";
+                        else
+                            symbolCheck = "0";
+
+
+                        for (int i = 0; i < 3; i++)
+                        {
+                            for (int j = 0; j < 3; j++)
+                            {
+                                if (buttonList[i * 3 + j].Text == symbolCheck)
+                                {
+
+                                    if (Fplayer && buttonList[i * 3 + j].BackColor == Color.Aquamarine)
+                                    {
+                                        buttonList[i * 3 + j].BackColor = Color.Yellow;
+                                        Fplayer = !Fplayer;
+                                    }
+                                    if (!Fplayer && buttonList[i * 3 + j].BackColor == Color.Aquamarine)
+                                    {
+                                        buttonList[i * 3 + j].BackColor = Color.Green;
+                                        Fplayer = !Fplayer;
+                                    }
+                                }
+                                if ((i == 2 && j == 2) && ((buttonList[0].Text == symbolCheck && buttonList[3].Text == symbolCheck && buttonList[6].Text == symbolCheck) ||
+                                (buttonList[1].Text == symbolCheck && buttonList[4].Text == symbolCheck && buttonList[7].Text == symbolCheck) ||
+                                (buttonList[2].Text == symbolCheck && buttonList[5].Text == symbolCheck && buttonList[8].Text == symbolCheck) ||
+                                (buttonList[0].Text == symbolCheck && buttonList[1].Text == symbolCheck && buttonList[2].Text == symbolCheck) ||
+                                (buttonList[3].Text == symbolCheck && buttonList[4].Text == symbolCheck && buttonList[5].Text == symbolCheck) ||
+                                (buttonList[6].Text == symbolCheck && buttonList[7].Text == symbolCheck && buttonList[8].Text == symbolCheck) ||
+                                (buttonList[0].Text == symbolCheck && buttonList[4].Text == symbolCheck && buttonList[8].Text == symbolCheck) ||
+                                (buttonList[2].Text == symbolCheck && buttonList[4].Text == symbolCheck && buttonList[6].Text == symbolCheck)))
+                                    win = true;
+                            }
+                        }
+
+                        //Message if the first player wins
+                        if (!Fplayer && win)
+                        {
+                            btnNext.Visible = false;
+                            winmsg.Text = "The first player wins!!!";
+                            winmsg.BackColor = Color.Yellow;
+                            winmsg.BringToFront();
+                            winmsg.Visible = true;
+                            return;
+                        }
+
+                        //Message if the second player wins
+                        else if (Fplayer && win)
+                        {
+                            btnNext.Visible = false;
+                            winmsg.Text = "The second player wins!!!";
+                            winmsg.BackColor = Color.Green;
+                            winmsg.BringToFront();
+                            winmsg.Visible = true;
+                            return;
+                        }
+
+                        //Message if the end of game and the draw
+                        if (step == 9)
+                        {
+                            btnNext.Visible = false;
+                            winmsg.Text = "The end of game, DRAW!!!";
+                            winmsg.BackColor = Color.Brown;
+                            winmsg.BringToFront();
+                            winmsg.Visible = true;
+                            return;
+                        }
+                        if (Fplayer)
+                        {
+                            btnNext.Text = "Step the first player";
+                            btnNext.BackColor = Color.Yellow;
+                            step++;
+                        }
+                        else
+                        {
+                            btnNext.Text = "Step the second player";
+                            btnNext.BackColor = Color.Green;
+                            step++;
+                        }
+                    }
+                    else if (countFullCells > step)
+                    {
+                        errmsg.Text = "You can`t fill more than one cell!";
+                        errmsg.Visible = true;
+                    }
+                    else
+                    {
+                        errmsg.Text = "You need to step and fill one cell!";
+                        errmsg.Visible = true;
+                    }
+                }
+            };
+
+            #endregion
+
         }
 
         List<Button> buttonList = new List<Button>();
