@@ -1,4 +1,8 @@
-﻿namespace X_0_Game__WinForm_
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace X_0_Game__WinForm_
 {
     partial class Form1
     {
@@ -28,10 +32,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            //The main settings of the playing field 
+            #region
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Text = "X-Zero game";
+            this.Size = new Size(530, 530);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Location = new Point(400, 200);
+            bool Fplayer = true;  //A step of the first player
+            int step = 1;         //A number of the step
+            string symbolCheck = "X";
+            bool win = false;
+            #endregion
+
         }
 
         #endregion
